@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name    [X] Post Tracker
 // @author  Aurange
-// @version 1.2
+// @version 1.3
 // @match   https://twitter.com/*/with_replies
 // @grant   window.close
 // ==/UserScript==
@@ -11,10 +11,10 @@
 new MutationObserver(function(mutationList, observer){
   let posts = document.querySelectorAll("div[data-testid='cellInnerDiv']");
 
-  if(posts.length > 0){
+  if(posts.length > 1){
     observer.disconnect();
 
-    let post = [...posts].filter(e => (e.textContent !== "" && e.querySelector("span").textContent !== "Pinned"))[0].querySelectorAll("a")[3].href,
+    let post = [...posts].filter(e => (e.textContent !== "" && e.textContent.indexOf("Pinned") === -1))[0].querySelectorAll("a")[3].href,
         user = post.split(".com/")[1].split("/status")[0];
 
     if(!localStorage.getItem(user) || post !== localStorage.getItem(user)){
