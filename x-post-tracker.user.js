@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name    [X] Post Tracker
 // @author  Aurange
-// @version 1.3
-// @match   https://twitter.com/*/with_replies
+// @version 1.4
+// @match   https://x.com/*/with_replies
 // @grant   window.close
 // ==/UserScript==
 
