@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name    [X] Post Tracker
 // @author  Aurange
-// @version 1.4
+// @version 1.5
 // @match   https://x.com/*/with_replies
 // @grant   window.close
 // ==/UserScript==
@@ -15,9 +15,10 @@ new MutationObserver(function(mutationList, observer){
     observer.disconnect();
 
     let post = [...posts].filter(e => (e.textContent !== "" && e.textContent.indexOf("Pinned") === -1))[0].querySelectorAll("a")[3].href,
-        user = post.split(".com/")[1].split("/status")[0];
+        user = post.split(".com/")[1].split("/status")[0],
+        lSU = localStorage.getItem(user);
 
-    if(!localStorage.getItem(user) || post !== localStorage.getItem(user)){
+    if(!lSU || post !== lSU){
       localStorage.setItem(user, post);
     }
     else window.close();
